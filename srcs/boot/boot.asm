@@ -90,3 +90,5 @@ _start:
 .hang:	hlt ; boucle infinie, si interruption, on jump a la boucle
 	jmp .hang
 .end: ; fin d'un programme assembleur
+
+section .note.GNU-stack noalloc noexec nowrite progbits

@@ -77,3 +77,6 @@ ISR_NOERRCODE 28
 ISR_NOERRCODE 29
 ISR_NOERRCODE 30
 ISR_NOERRCODE 31
+
+
+section .note.GNU-stack noalloc noexec nowrite progbits

@@ -24,8 +24,6 @@ all: build
 build:
 	mkdir -p build
 	nasm -felf32 ${BOOT} -o build/boot.o
-	# nasm -felf32 ${KERNEL} -o build/kernel.o
-	# i686-elf-gcc -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 	gcc -m32 ${FLAGS} -c ${KERNEL} -o build/kernel.o
 	gcc -m32 ${FLAGS} -c srcs/kernel/cursor/cursor.c -o build/cursor.o
 	gcc -m32 ${FLAGS} -c srcs/kernel/handler/handler.c -o build/handler.o
@@ -43,8 +41,6 @@ build:
 	gcc -m32 ${FLAGS} -c srcs/kernel/shell/shell.c -o build/shell.o
 	gcc -m32 ${FLAGS} -c srcs/kernel/vga/vga.c -o build/vga.o
 	ld -m elf_i386 -T ${LINKER} -o ${KERNEL_BIN} build/boot.o build/kernel.o build/cursor.o build/idt_flush.o build/gdt_flush.o build/handler.o build/gdt.o build/idt.o build/irq.o build/isr.o build/irqasm.o build/israsm.o build/io.o build/keyboard.o build/kfunctions.o build/shell.o build/vga.o -nostdlib
-	# ld -m elf_i386 -T ${LINKER} -o ${KERNEL_BIN} build/boot.o build/kernel.o build/keyboard.o -nostdlib
-
 
 run: build
 	qemu-system-i386 -kernel ${KERNEL_BIN} -monitor stdio

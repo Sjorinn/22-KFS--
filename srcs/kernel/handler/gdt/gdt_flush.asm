@@ -13,3 +13,5 @@ gdt_flush:
    jmp 0x08:.flush      ; 0x08 is the offset to our code segment: far jump on it
 .flush:
    ret
+
+section .note.GNU-stack noalloc noexec nowrite progbits
